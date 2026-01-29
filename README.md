@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# quiz-app-helm
-=======
 # quiz-app-chart
 
 Helm chart per il deploy di quiz-app (frontend, backend, database MongoDB) su Kubernetes.
@@ -30,4 +27,4 @@ helm install quiz-app ./quiz-app-chart -n <namespace> --create-namespace
 ## Note
 - Adatto a CD/ArgoCD
 - Personalizza i parametri in `values.yaml` secondo ambiente
->>>>>>> 648aa3f (Initial commit: add Helm chart)
+
