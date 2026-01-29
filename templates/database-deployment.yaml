@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quiz-mongo
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: {{ .Values.database.replicaCount }}
+  selector:
+    matchLabels:
+      app: quiz-mongo
+  template:
+    metadata:
+      labels:
+        app: quiz-mongo
+    spec:
+      containers:
+        - name: mongo
+          image: {{ .Values.database.image }}
+          ports:
+            - containerPort: {{ .Values.database.service.port }}
+          volumeMounts:
+            - name: mongo-persistent-storage
+              mountPath: /data/db
+      volumes:
+        - name: mongo-persistent-storage
+          persistentVolumeClaim:
+            claimName: mongo-ebs-pvc

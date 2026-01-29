@@ -1,0 +1,35 @@
+# Default values for quiz-app-chart
+namespace: quiz
+backend:
+  image: ogochukwuozotta/backend-api:latest
+  replicaCount: 4
+  service:
+    type: ClusterIP
+    port: 3000
+  env:
+    MONGO_URI: "mongodb://quiz-mongo:27017/quiz"
+database:
+  image: mongo:4.4.6
+  replicaCount: 4
+  storage:
+    size: 5Gi
+    class: ebs-sc
+  service:
+    type: ClusterIP
+    port: 27017
+frontend:
+  image: ogochukwuozotta/frontend-js:latest
+  replicaCount: 4
+  service:
+    type: ClusterIP
+    port: 8080
+  env:
+    VITE_REACT_APP_API_URL: "/api"
+ingress:
+  enabled: true
+  className: nginx
+  host: quiz-app.3.95.23.165.nip.io
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+secret:
+  mongoUri: "mongodb://quiz-mongo:27017/quiz"

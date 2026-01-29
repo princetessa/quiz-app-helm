@@ -1,0 +1,30 @@
+# PersistentVolume per EBS statico
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mongo-ebs-pv
+spec:
+  capacity:
+    storage: 10Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: ""
+  awsElasticBlockStore:
+    volumeID: vol-0d4d634e66c0616a5
+    fsType: ext4
+---
+# PersistentVolumeClaim per MongoDB
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mongo-ebs-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: ""
+  volumeName: mongo-ebs-pv
