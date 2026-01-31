@@ -10,7 +10,7 @@ backend:
     MONGO_URI: "mongodb://quiz-mongo:27017/quiz"
 database:
   image: mongo:4.4.6
-  replicaCount: 4
+  replicaCount: 1
   storage:
     size: 5Gi
     class: ebs-sc
