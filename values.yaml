@@ -29,7 +29,7 @@ ingress:
   enabled: true
   className: nginx
   host: quiz-app.3.222.248.105.nip.io
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+  #annotations:
+    #nginx.ingress.kubernetes.io/rewrite-target: /
 secret:
   mongoUri: "mongodb://quiz-mongo:27017/quiz"
